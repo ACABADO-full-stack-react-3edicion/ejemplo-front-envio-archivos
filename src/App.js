@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
 
 function App() {
+  const [formulario, setFormulario] = useState(true);
+  const enviarForm = (e) => {
+    e.preventDefault();
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <section className="contenedor">
+      {formulario ? (
+        <form onSubmit={enviarForm} autoComplete="off">
+          <div className="grupo">
+            <label htmlFor="nombre">Nombre:</label>
+            <input id="nombre" type="text" className="form-control"></input>
+          </div>
+          <div className="grupo">
+            <label htmlFor="imagen" className="custom-file-label">
+              Imagen:
+            </label>
+            <input
+              id="imagen"
+              type="file"
+              className="custom-file-input"
+            ></input>
+          </div>
+          <div className="grupo">
+            <button type="submit">Enviar</button>
+          </div>
+        </form>
+      ) : (
+        <p>Datos enviados</p>
+      )}
+    </section>
   );
 }
 
